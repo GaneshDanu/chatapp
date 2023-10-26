@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { createGroup } from "../../api/apis";
 
-export default function GroupForm({close}){
+export default function GroupForm({close, getGroup}){
     const [groupInfo, setGroupInfo] = useState({});
 
     const handleChange = e => {
@@ -25,12 +25,14 @@ export default function GroupForm({close}){
           return alert(res.message)
         }
         console.log('res ', res)
+        getGroup()
         close()
       }
 
     return(
         <div className="group-form-screen">
             <div className="group-form-body">
+                <div className="close" onClick={close} />
                 <h1 className="login-title">Create Group</h1>
                 <form className='login-form'>
                 <div className='flex-col'>

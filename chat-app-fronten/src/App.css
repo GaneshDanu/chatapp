@@ -1,5 +1,6 @@
 :root{
   --chat-font: "Source Sans Pro";
+  --fa-family: "Font Awesome\ 5 Free"
 }
 
 body {
@@ -12,7 +13,10 @@ body {
 }
 
 header{
-  padding: 40px 10px;
+  padding: 20px 10px;
+  height: 55px;
+  background: linear-gradient(135deg, #3498db, #8e44ad);
+  color: #fff;
 }
 
 .screen{
@@ -23,6 +27,18 @@ header{
 .dflex-center{
   display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.dFlex-start{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.dFlex-SB{
+  display: flex;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -100,4 +116,123 @@ header{
   width: 100%;
   padding: 10px;
   border-radius: 10px;
+  position: relative;
+}
+
+.chat-container{
+  padding: 10px;
+}
+
+.close::after{
+  content: '\f00d';
+  font-family: var(--fa-family);
+  font-weight: 600;
+  position: absolute;
+  right: 10px;
+  color: gray;
+  cursor: pointer;
+}
+
+.addBtn{
+  border: 1px solid lightgray;
+  color: #fff;
+  transition: background 1s ;
+  padding: 4px 5px;
+  border-radius: 10px;
+}
+
+.addBtn:hover{
+  color: #fff;
+  background: linear-gradient(69deg, rgb(241, 87, 104), rgb(244, 121, 59));
+}
+
+.addBtn::before{
+  content: '\2b';
+  font-family: var(--fa-family);
+  font-weight: 600;
+  cursor: pointer;
+  margin-right: 5px;
+}
+
+.group-chatWrap{
+  padding: 20px 10px;
+  border-bottom: 1px solid #c9c5c5;
+  cursor: pointer;
+}
+
+.chat-input-cont{
+  position: fixed;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 7px;
+  border-top: 1px solid #c7c5c5;
+}
+
+.chat-input{
+  width: 80%;
+  padding: 5px 8px;
+  min-height: 35px;
+  border-radius: 5px;
+  outline: none;
+  border: 1px solid lightblue;
+}
+
+
+.chat-send::after{
+  content: '\f1d8';
+  font-family: var(--fa-family);
+  font-weight: 600;
+  font-size: 25px;
+}
+
+.chat-container-wrapper{
+  padding: 10px;
+}
+
+.group-chat-wrap{
+  border: 1px solid #d1cccc;
+  border-radius: 4px;
+  padding: 4px 26px 4px 5px;
+  width: max-content;
+  margin-bottom: 20px;
+}
+
+.group-chat-wrap p,
+.group-chat-wrap h5{
+  margin: 0;
+}
+
+.group-chat-wrap h5{
+  margin-bottom: 12px;
+}
+
+.chat-right{
+  margin-left: auto;
+}
+
+.chat-list-title{
+  margin: 0;
+}
+
+.chat-group-title{
+  width: max-content;
+  text-align: center;
+  margin: 0 auto;
+  padding: 0 20px 20px 20px;
+}
+.backIcon{
+  position: absolute;
+  left: 10px;
+}
+
+.backIcon::before{
+  content: '\f060';
+  font-family: var(--fa-family);
+  font-weight: 600;
+  margin-right: 5px;
 }

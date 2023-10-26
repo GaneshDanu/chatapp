@@ -5,8 +5,10 @@ export default function Header({handleCreate}){
 
     return (
         <header className='header'>
-            <h3 className='chat-app-logo'>WhatsApp</h3>
-            <span onClick={_=>handleCreate(true)}>create Group</span>
+            <div className='dFlex-SB'>
+                <h3 className='chat-app-logo'>WhatsApp</h3>
+                <span className='addBtn' onClick={_=>handleCreate(true)}>add Group</span>
+            </div>
         </header>
     )
 }

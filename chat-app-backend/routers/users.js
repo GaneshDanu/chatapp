@@ -6,7 +6,7 @@ const verifyToken = require('../auth/verifyJWT');
 
 router.get('/all', verifyToken, async(req, res)=>{
     try{
-        const allUsers = await User.find()
+        const allUsers = await User.find({_id: {$ne: req.authUser.id}})
         res.json(allUsers)
     }catch(err){
         res.status(400).json({ok: false, message: err.message})

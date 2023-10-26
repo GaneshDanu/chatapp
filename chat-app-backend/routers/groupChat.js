@@ -8,8 +8,9 @@ const verifyToken = require('../auth/verifyJWT')
 router.get('/all', verifyToken, async(req, res)=>{
     try{
         const allGroups = await GroupChat.find()
-            .populate('members.userId')
-            .populate('admin')
+        .populate({path: 'members.userId', select: ['name', 'phone']})
+        .populate({path: 'chats.userId', select: ['name', 'phone']})
+        .populate({path: 'admin', select: ['name', 'phone']})
         res.json(allGroups)
     }catch(err){
         res.status(400).json({ok: false, message: err.message})
@@ -57,11 +58,11 @@ router.delete('/:id/member/:userId', [verifyToken, getGroup], async(req, res)=>{
 })
 
 
-router.patch('/:id/chat', [verifyToken, getGroup], async(req, res)=>{
+router.patch('/:groupId/chat', verifyToken, async(req, res)=>{
     try {
         const userId = req.authUser.id
-        await GroupChat.updateOne(
-            { _id: req.params.id },
+        const data = await GroupChat.findOneAndUpdate(
+            { _id: req.params.groupId },
             {
                 $push: {
                     chats: {
@@ -70,8 +71,12 @@ router.patch('/:id/chat', [verifyToken, getGroup], async(req, res)=>{
                     }
                 }
             },
-        )
-        res.status(201).json({messaged: 'messaged added'})
+            {new: true}
+        ).populate({path: 'members.userId', select: ['name', 'phone']})
+        .populate({path: 'chats.userId', select: ['name', 'phone']})
+        .populate({path: 'admin', select: ['name', 'phone']})
+        // const chatData = await GroupChat.
+        res.status(201).json(data)
     }catch(err){
         res.status(500).json({ok: false, message: err.message})
     }
@@ -106,8 +111,9 @@ router.get('/mygroups', verifyToken, async(req, res)=>{
               { 'members.userId': userId }
             ]
         })
-        .populate('members.userId')
-        .populate('admin')
+        .populate({path: 'members.userId', select: ['name', 'phone']})
+        .populate({path: 'chats.userId', select: ['name', 'phone']})
+        .populate({path: 'admin', select: ['name', 'phone']})
         .then(groupChats => {
             res.json(groupChats)
         });
@@ -138,8 +144,9 @@ router.patch('/addMember', verifyToken, async (req, res) => {
             },
             { new: true }
         )
-        .populate('members.userId')
-        .populate('admin')
+        .populate({path: 'members.userId', select: ['name', 'phone']})
+        .populate({path: 'chats.userId', select: ['name', 'phone']})
+        .populate({path: 'admin', select: ['name', 'phone']})
         res.status(201).json(member)
     } catch (err) {
         console.log('err ', err.message)
@@ -152,8 +159,9 @@ async function getGroup(req, res, next){
     let group
     try{
         group = await GroupChat.findById(req.params.id)
-            .populate('members.userId')
-            .populate('admin')
+        .populate({path: 'members.userId', select: ['name', 'phone']})
+        .populate({path: 'chats.userId', select: ['name', 'phone']})
+        .populate({path: 'admin', select: ['name', 'phone']})
         if(group===null){
             return res.status(404).json({ok: false, message: 'group not found'})
         }

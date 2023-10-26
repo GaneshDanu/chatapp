@@ -1,10 +1,24 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
+import { getAllUsers } from '../../api/apis'
 
-export default function addMember() {
+export default function AddMember() {
 
 	const [showMember, setShowMembers] = useState(false)
 	const [allUsers, setAllUsers] = useState([])
 	const [selectMode, setSelectMod] = useState(false)
+
+	const getUserList = async _ => {
+		const res = await  getAllUsers()
+		if(res.ok === false){
+			return alert(res.message)
+		}
+
+		console.log('res ', res)
+	}
+
+	useEffect(_=>{
+		getUserList()
+	},[])
 
 	
 

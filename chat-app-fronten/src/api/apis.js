@@ -71,3 +71,38 @@ export const getMyGroups = () => {
         return {ok: false, message: err.message}
     })
 }
+
+export const getAllUsers = () => {
+    const requestOption = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${getAuthToken()}`
+        },
+    }
+    return fetch(`${process.env.REACT_APP_API_URL}/user/all`, requestOption)
+    .then(res=>res.json())
+    .catch(err=>{
+        console.log('err ', err)
+        if(err.response) return err.response
+        return {ok: false, message: err.message}
+    })
+}
+
+export const sendMessage = ({message, groupId}) => {
+    const requestOption = {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${getAuthToken()}`
+        },
+        body: JSON.stringify({message})
+    }
+    return fetch(`${process.env.REACT_APP_API_URL}/group/${groupId}/chat`, requestOption)
+    .then(res=>res.json())
+    .catch(err=>{
+        console.log('err ', err)
+        if(err.response) return err.response
+        return {ok: false, message: err.message}
+    })
+}

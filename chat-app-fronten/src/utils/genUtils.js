@@ -18,6 +18,14 @@ export const getAuthToken= _ => {
     return user.token
 }
 
+export const userId= _ => {
+    let user = localStorage.getItem('user')
+    if(!user) return false
+
+    user = JSON.parse(user)
+    return user.userInfo._id
+}
+
 export const setLoginInfo = info => {
     localStorage.setItem('user', JSON.stringify(info))
 }

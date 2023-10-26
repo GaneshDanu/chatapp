@@ -1,33 +1,45 @@
-import React, { useEffect, useState } from "react";
-import { getMyGroups } from "../../api/apis";
+import React, { useRef, useState } from "react";
+import { sendMessage } from "../../api/apis";
+import { userId } from "../../utils/genUtils";
 
-export default function Chat(){
+export default function Chat({chatInfo, close}){
 
-    const [groups, setGroups] = useState([])
+    const [currMsg, setCurrMsg] = useState('')
+    const [usrId] = useState(userId())
+    const [chatData, setChatData] = useState(chatInfo)
+    const inputRef = useRef()
 
-    const getAllGroups = async _ => {
-        const res = await getMyGroups()
-        if(res.ok === false){
-            return alert(res.message)
-        }
-        console.log('res ', res)
-        setGroups(res)
+
+    const handleChange = e => {
+        setCurrMsg(e.target.value)
     }
 
-    useEffect(_=>{
-        getAllGroups()
-    },[])
+    const handleSend=async _ =>{
+        if(!currMsg.trim()) return
+        const res = await sendMessage({message: currMsg.trim(), groupId: chatData._id})
+        console.log('res ', res)
+        setChatData(res)
+        inputRef.current.value=''
+        setCurrMsg('')
+    }
 
     return(
-        <div className="chat-container">
-            <h3>Groups List</h3>
+        <div className="chat-container-wrapper">
+            <div className="backIcon" onClick={close} />
+            <h3 className="chat-group-title">{chatData.name}</h3>
             {
-                groups.map((obj, idx)=>
-                    <div key={idx}>
-                        {obj.name}
+                chatData.chats.map(chat=>
+                    <div className={`group-chat-wrap ${chat.userId._id === usrId && 'chat-right'}`} key={chat._id}>
+                        <h5>{chat.userId.name}</h5>
+                        <p>{chat.message}</p>
                     </div>
                 )
             }
+
+            <div className="chat-input-cont">
+                <input placeholder="send message..." ref={inputRef} className="chat-input" type="text" onChange={handleChange} />
+                <div className="chat-send" onClick={handleSend} />
+            </div>
         </div>
     )
 }
