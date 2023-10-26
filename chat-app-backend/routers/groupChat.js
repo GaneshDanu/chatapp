@@ -58,15 +58,42 @@ router.delete('/:id/member/:userId', [verifyToken, getGroup], async(req, res)=>{
 
 
 router.patch('/:id/chat', [verifyToken, getGroup], async(req, res)=>{
-    try{
-        res.group.chats.push({
-            userId: req.body.userId,
-            message: req.body.message
-        }) 
-        const updatedGroup = await res.group.save()
-        res.status(201).json(updatedGroup)
+    try {
+        const userId = req.authUser.id
+        await GroupChat.updateOne(
+            { _id: req.params.id },
+            {
+                $push: {
+                    chats: {
+                        userId: userId,
+                        message: req.body.message
+                    }
+                }
+            },
+        )
+        res.status(201).json({messaged: 'messaged added'})
     }catch(err){
         res.status(500).json({ok: false, message: err.message})
+    }
+})
+
+router.delete('/:id/chat/:messageId', [verifyToken, getGroup], async (req, res) => {
+    try {
+        const userId = req.authUser.id
+        const data = await GroupChat.updateOne(
+            { _id: req.params.id },
+            {
+                $pull: {
+                    chats: {
+                        _id: req.params.messageId,
+                        userId: userId
+                    }
+                }
+            },
+        )
+        res.status(201).json({ messaged: 'messaged deleted', data })
+    } catch (err) {
+        res.status(500).json({ ok: false, message: err.message })
     }
 })
 
