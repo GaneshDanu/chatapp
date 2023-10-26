@@ -12,8 +12,7 @@ const groupChatScheema = new mongoose.Schema({
     userId: {
       type: mongoose.Schema.Types.ObjectId, 
       ref: 'Users',
-      unique: true,
-      required: true
+      required: true,
     },
     createdDate: {type: Date, default: Date.now},
     // role: {type: String, default: 'user', enum: ['user', 'admin']},

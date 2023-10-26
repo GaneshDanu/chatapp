@@ -1,6 +1,6 @@
 GET http://localhost:8000/user/all
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzdiZDAxMzBhMmVlYjMyYmY4MzRjZSIsImlhdCI6MTY5ODE1MjMxNiwiZXhwIjoxNjk5MDE2MzE2fQ.6I8_HKGzh8vK4ncE1QMyiFMHE2EiLYjNDOK5P_c_fQs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1M2EyMDcwYWVjYWJkMDY3OGNlNWZjZSIsImlhdCI6MTY5ODMwODIxNywiZXhwIjoxNjk5MTcyMjE3fQ.fahylwtK4uUp0xypxtyzGfTVARqD-wFBTA-uX9XvXSA
 
 ###
 
@@ -9,7 +9,7 @@ Content-Type: application/json
 
 {
     "password": "acroknacks",
-    "phone": "7453026543"
+    "phone": "9012388924"
 }
 
 
@@ -19,48 +19,59 @@ POST http://localhost:8000/user
 Content-Type: application/json
 
 {
-    "name": "ganesh",
-    "phone": "7453026543",
+    "name": "User3",
+    "phone": "9012388926",
     "password": "acroknacks"
 }
 
 ###
 
 DELETE http://localhost:8000/user/6537bc74970cd873f8320da8
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzdiZDAxMzBhMmVlYjMyYmY4MzRjZSIsImlhdCI6MTY5ODE1MjMxNiwiZXhwIjoxNjk5MDE2MzE2fQ.6I8_HKGzh8vK4ncE1QMyiFMHE2EiLYjNDOK5P_c_fQs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1M2EyMDcwYWVjYWJkMDY3OGNlNWZjZSIsImlhdCI6MTY5ODMwODIxNywiZXhwIjoxNjk5MTcyMjE3fQ.fahylwtK4uUp0xypxtyzGfTVARqD-wFBTA-uX9XvXSA
 
 ###
 
 GET http://localhost:8000/group/all
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzdiZDAxMzBhMmVlYjMyYmY4MzRjZSIsImlhdCI6MTY5ODE1MjMxNiwiZXhwIjoxNjk5MDE2MzE2fQ.6I8_HKGzh8vK4ncE1QMyiFMHE2EiLYjNDOK5P_c_fQs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1M2EyMDcwYWVjYWJkMDY3OGNlNWZjZSIsImlhdCI6MTY5ODMwODIxNywiZXhwIjoxNjk5MTcyMjE3fQ.fahylwtK4uUp0xypxtyzGfTVARqD-wFBTA-uX9XvXSA
 
 ###
 
-GET http://localhost:8000/group/65377f9b31a45eb4e53ffefa
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzdiZDAxMzBhMmVlYjMyYmY4MzRjZSIsImlhdCI6MTY5ODE1MjMxNiwiZXhwIjoxNjk5MDE2MzE2fQ.6I8_HKGzh8vK4ncE1QMyiFMHE2EiLYjNDOK5P_c_fQs
+GET http://localhost:8000/group/get/653a28e721540cff1ce8ae5d
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1M2EyMDcwYWVjYWJkMDY3OGNlNWZjZSIsImlhdCI6MTY5ODMwODIxNywiZXhwIjoxNjk5MTcyMjE3fQ.fahylwtK4uUp0xypxtyzGfTVARqD-wFBTA-uX9XvXSA
 
 ###
 
 POST http://localhost:8000/group
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzdiZDAxMzBhMmVlYjMyYmY4MzRjZSIsImlhdCI6MTY5ODE1MjMxNiwiZXhwIjoxNjk5MDE2MzE2fQ.6I8_HKGzh8vK4ncE1QMyiFMHE2EiLYjNDOK5P_c_fQs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1M2EyMDcwYWVjYWJkMDY3OGNlNWZjZSIsImlhdCI6MTY5ODMwODIxNywiZXhwIjoxNjk5MTcyMjE3fQ.fahylwtK4uUp0xypxtyzGfTVARqD-wFBTA-uX9XvXSA
 
 {
-    "name": "Group1",
+    "name": "Group2"
+}
+
+###
+
+PATCH http://localhost:8000/group/addMember
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1M2EyMDcwYWVjYWJkMDY3OGNlNWZjZSIsImlhdCI6MTY5ODMwODIxNywiZXhwIjoxNjk5MTcyMjE3fQ.fahylwtK4uUp0xypxtyzGfTVARqD-wFBTA-uX9XvXSA
+
+{
+    "memberId": "653a2581724fe6f9ca46f137",
+    "groupId": "653a28e721540cff1ce8ae5d"
 }
 
 
 ###
 
 GET http://localhost:8000/group/mygroups
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzdiZDAxMzBhMmVlYjMyYmY4MzRjZSIsImlhdCI6MTY5ODE1MjMxNiwiZXhwIjoxNjk5MDE2MzE2fQ.6I8_HKGzh8vK4ncE1QMyiFMHE2EiLYjNDOK5P_c_fQs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1M2EyMDcwYWVjYWJkMDY3OGNlNWZjZSIsImlhdCI6MTY5ODMwODIxNywiZXhwIjoxNjk5MTcyMjE3fQ.fahylwtK4uUp0xypxtyzGfTVARqD-wFBTA-uX9XvXSA
 
 
 ###
 
-PATCH http://localhost:8000/group/member/65377f9b31a45eb4e53ffefa
+PATCH http://localhost:8000/group/member/653a21c38faa99623d59bfa6
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzdiZDAxMzBhMmVlYjMyYmY4MzRjZSIsImlhdCI6MTY5ODE1MjMxNiwiZXhwIjoxNjk5MDE2MzE2fQ.6I8_HKGzh8vK4ncE1QMyiFMHE2EiLYjNDOK5P_c_fQs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1M2EyMDcwYWVjYWJkMDY3OGNlNWZjZSIsImlhdCI6MTY5ODMwODIxNywiZXhwIjoxNjk5MTcyMjE3fQ.fahylwtK4uUp0xypxtyzGfTVARqD-wFBTA-uX9XvXSA
 
 {
     "userId": "65376f6b6fd89909876f1be9"
@@ -70,7 +81,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzdiZDAxM
 
 PATCH http://localhost:8000/group/65377f9b31a45eb4e53ffefa/chat
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzdiZDAxMzBhMmVlYjMyYmY4MzRjZSIsImlhdCI6MTY5ODE1MjMxNiwiZXhwIjoxNjk5MDE2MzE2fQ.6I8_HKGzh8vK4ncE1QMyiFMHE2EiLYjNDOK5P_c_fQs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1M2EyMDcwYWVjYWJkMDY3OGNlNWZjZSIsImlhdCI6MTY5ODMwODIxNywiZXhwIjoxNjk5MTcyMjE3fQ.fahylwtK4uUp0xypxtyzGfTVARqD-wFBTA-uX9XvXSA
 
 {
     "userId": "65376f6b6fd89909876f1be9",
@@ -79,10 +90,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzdiZDAxM
 
 ###
 
-DELETE http://localhost:8000/group/65377b30cccf8cd7c90dd56e
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzdiZDAxMzBhMmVlYjMyYmY4MzRjZSIsImlhdCI6MTY5ODE1MjMxNiwiZXhwIjoxNjk5MDE2MzE2fQ.6I8_HKGzh8vK4ncE1QMyiFMHE2EiLYjNDOK5P_c_fQs
+DELETE http://localhost:8000/group/653a22f27b6395517918a7e8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1M2EyMDcwYWVjYWJkMDY3OGNlNWZjZSIsImlhdCI6MTY5ODMwODIxNywiZXhwIjoxNjk5MTcyMjE3fQ.fahylwtK4uUp0xypxtyzGfTVARqD-wFBTA-uX9XvXSA
 
 ###
 
-DELETE http://localhost:8000/group/65377f9b31a45eb4e53ffefa/member/65376f6b6fd89909876f1be9
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzdiZDAxMzBhMmVlYjMyYmY4MzRjZSIsImlhdCI6MTY5ODE1MjMxNiwiZXhwIjoxNjk5MDE2MzE2fQ.6I8_HKGzh8vK4ncE1QMyiFMHE2EiLYjNDOK5P_c_fQs
+DELETE http://localhost:8000/group/653a28e721540cff1ce8ae5d/member/653a2576724fe6f9ca46f135
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1M2EyMDcwYWVjYWJkMDY3OGNlNWZjZSIsImlhdCI6MTY5ODMwODIxNywiZXhwIjoxNjk5MTcyMjE3fQ.fahylwtK4uUp0xypxtyzGfTVARqD-wFBTA-uX9XvXSA
