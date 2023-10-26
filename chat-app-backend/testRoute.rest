@@ -79,18 +79,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzdjZDVhN
 
 ###
 
-PATCH http://localhost:8000/group/653a28e721540cff1ce8ae5d/chat
+PATCH http://localhost:8000/group/653a807ed2f7d8de8724614c/chat
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzdjZDVhNWFhYjRlOTA2ODFlMDhkMSIsImlhdCI6MTY5ODMzMTY4NSwiZXhwIjoxNjk5MTk1Njg1fQ.umZ1KP7St8LPx9aCg0esVCJ4d2kcF-Tt7JSPn9wKGFQ
 
 {
-    "message": "Hello this is sample message"
+    "message": "Hello this is sample message111"
 }
 
 ###
 
 
-DELETE http://localhost:8000/group/653a28e721540cff1ce8ae5d/chat/653a4114b255652e57553407
+DELETE http://localhost:8000/group/653a807ed2f7d8de8724614c/chat/653a4114b255652e57553407
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1MzdjZDVhNWFhYjRlOTA2ODFlMDhkMSIsImlhdCI6MTY5ODMzMTY4NSwiZXhwIjoxNjk5MTk1Njg1fQ.umZ1KP7St8LPx9aCg0esVCJ4d2kcF-Tt7JSPn9wKGFQ
 
