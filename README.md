@@ -1,7 +1,5 @@
 # chatapp
 
-##### node version 18 required
-
 ### BACKEND SETUP
 #### path {root/chat-app-backend}
 #### 1. INSTALL MONGODB ON YOUR MACHINE

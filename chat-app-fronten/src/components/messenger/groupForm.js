@@ -24,7 +24,6 @@ export default function GroupForm({close, getGroup}){
         if(res.ok === false){
           return alert(res.message)
         }
-        console.log('res ', res)
         getGroup()
         close()
       }

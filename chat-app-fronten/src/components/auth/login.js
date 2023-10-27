@@ -27,7 +27,7 @@ export default function Login() {
     if(res.ok === false){
       return alert(res.message)
     }
-    history('/')
+    history('/home')
   }
 
   return (

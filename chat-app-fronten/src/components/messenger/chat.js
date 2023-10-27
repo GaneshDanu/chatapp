@@ -17,7 +17,6 @@ export default function Chat({chatInfo, close}){
     const handleSend=async _ =>{
         if(!currMsg.trim()) return
         const res = await sendMessage({message: currMsg.trim(), groupId: chatData._id})
-        console.log('res ', res)
         setChatData(res)
         inputRef.current.value=''
         setCurrMsg('')

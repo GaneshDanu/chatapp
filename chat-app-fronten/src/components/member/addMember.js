@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from 'react'
-import { addMembersToGroup, getAllUsers, getGroupNonParticipants } from '../../api/apis'
-
+import { addMembersToGroup, getGroupNonParticipants } from '../../api/apis'
 export default function AddMember({groupId, close}) {
-
 	const [showMember, setShowMembers] = useState(false)
 	const [allUsers, setAllUsers] = useState([])
 	const [selectMode, setSelectMod] = useState(false)
@@ -12,7 +10,6 @@ export default function AddMember({groupId, close}) {
 		if(res.ok === false){
 			return alert(res.message)
 		}
-		console.log('res ', res)
 		setAllUsers(res)
 	}
 
@@ -42,7 +39,6 @@ export default function AddMember({groupId, close}) {
 		if (res.ok === false) {
 			return alert(res.message)
 		}
-		console.log('res ', res)
 		close()
 	}
 

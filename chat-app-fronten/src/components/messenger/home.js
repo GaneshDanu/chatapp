@@ -6,7 +6,6 @@ import ChatList from "./chatList";
 import Chat from "./chat";
 
 export default function Home(){
-
     const [showCreateGroupForm, setShowCreateGroup] = useState(false)
     const [groups, setGroups] = useState([])
     const [opendChat, setOpendChat]=useState({show: false})
@@ -16,7 +15,6 @@ export default function Home(){
         if(res.ok === false){
             return alert(res.message)
         }
-        console.log('res ', res)
         setGroups(res)
     }
 
@@ -30,7 +28,7 @@ export default function Home(){
 
     return(
         <div>
-            <Header handleCreate={setShowCreateGroup} groupId={opendChat._id} closeParticipent={_ => setOpendChat({ show: false })} />
+            <Header handleCreate={setShowCreateGroup} groupInfo={opendChat} closeParticipent={_ => setOpendChat({ show: false })} />
             {showCreateGroupForm && <GroupForm getGroup={getAllGroups} close={_ => setShowCreateGroup(false)} />}
             {
                 opendChat.show? <Chat close={_=>setOpendChat({show: false})} chatInfo={opendChat}/>:

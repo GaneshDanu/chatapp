@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link, useNavigate} from 'react-router-dom';
 import { createUser } from '../../api/apis';
-import { setLoginInfo } from '../../utils/genUtils';
 
 export default function SignUp() {
   const [userInfo, setUserInfo] = useState({});
@@ -24,7 +23,6 @@ export default function SignUp() {
     // TODO add correct validation for name, password and phone
     if(!name || !password || !phone) return 
     const res = await createUser({...userInfo})
-    console.log('res ', res)
     if(res.ok === false){
       return alert(res.message)
     }
