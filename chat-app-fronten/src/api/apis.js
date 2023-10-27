@@ -106,3 +106,20 @@ export const sendMessage = ({message, groupId}) => {
         return {ok: false, message: err.message}
     })
 }
+
+
+export const getGroupNonParticipants = ({groupId}) => {
+    const requestOption = {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${getAuthToken()}`
+        },
+    }
+    return fetch(`${process.env.REACT_APP_API_URL}/group/${groupId}/nonparticipents`, requestOption)
+        .then(res => res.json())
+        .catch(err => {
+            if (err.response) return err.response
+            return { ok: false, message: err.message }
+        })
+}

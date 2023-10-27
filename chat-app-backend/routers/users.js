@@ -22,7 +22,7 @@ router.post('/login', async(req, res)=>{
         const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: '10d' });
         const userInfo=user.toObject()
         delete userInfo.password
-        res.status(201).json({userInfo, token})
+        res.status(201).json({...userInfo, token})
     }catch(error){
         res.status(400).json({
             ok: false,

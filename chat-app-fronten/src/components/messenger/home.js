@@ -30,8 +30,8 @@ export default function Home(){
 
     return(
         <div>
-            <Header handleCreate={setShowCreateGroup} />
-            {showCreateGroupForm && <GroupForm getGroup={getAllGroups} close={_=>setShowCreateGroup(false)} />}
+            <Header handleCreate={setShowCreateGroup} groupId={opendChat._id} closeParticipent={_ => setOpendChat({ show: false })} />
+            {showCreateGroupForm && <GroupForm getGroup={getAllGroups} close={_ => setShowCreateGroup(false)} />}
             {
                 opendChat.show? <Chat close={_=>setOpendChat({show: false})} chatInfo={opendChat}/>:
                 <ChatList close={_=>setOpendChat({show: false})} openChat={openChat} groups={groups}/>

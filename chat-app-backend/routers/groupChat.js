@@ -1,6 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const GroupChat = require('../models/groupChatModel')
+const User = require('../models/userModel')
 const verifyToken = require('../auth/verifyJWT')
 
 
@@ -40,6 +41,20 @@ router.delete('/:id', verifyToken, async(req, res)=>{
         res.json({message: 'Group Deleted'})
     }catch(err){
         res.status(500).json({ok: false, message: err.message})
+    }
+})
+
+router.get('/:groupId/nonparticipents', [verifyToken], async (req, res) => {
+    try {
+        const groupChat = await GroupChat.findById(req.params.groupId, 'members.userId')
+        const memberUserIds = groupChat.members.map((member) => member.userId);
+        memberUserIds.push(req.authUser.id)
+        const userList = await User.find({ _id: { $nin: memberUserIds } }, ['name', 'phone'])
+        // return res.json(groupMembers)
+        
+        res.status(201).json(userList)
+    } catch (err) {
+        res.status(500).json({ ok: false, message: err.message })
     }
 })
 

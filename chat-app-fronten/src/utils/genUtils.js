@@ -23,7 +23,7 @@ export const userId= _ => {
     if(!user) return false
 
     user = JSON.parse(user)
-    return user.userInfo._id
+    return user._id
 }
 
 export const setLoginInfo = info => {

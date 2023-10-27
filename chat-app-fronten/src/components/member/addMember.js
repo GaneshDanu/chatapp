@@ -1,40 +1,56 @@
 import React, { useEffect, useState } from 'react'
-import { getAllUsers } from '../../api/apis'
+import { getAllUsers, getGroupNonParticipants } from '../../api/apis'
 
-export default function AddMember() {
+export default function AddMember({groupId, close}) {
 
 	const [showMember, setShowMembers] = useState(false)
 	const [allUsers, setAllUsers] = useState([])
 	const [selectMode, setSelectMod] = useState(false)
 
-	const getUserList = async _ => {
-		const res = await  getAllUsers()
+	const fetchGroupNonParticipants = async _ => {
+		const res = await getGroupNonParticipants({ groupId })
 		if(res.ok === false){
 			return alert(res.message)
 		}
-
 		console.log('res ', res)
+		setAllUsers(res)
 	}
 
 	useEffect(_=>{
-		getUserList()
-	},[])
+		fetchGroupNonParticipants()
+	}, [])
+	
+	const handleSelect = idx => {
+		const users = [...allUsers]
+		users[idx].selected = !users[idx].selected
+		setAllUsers(users)
+	}
 
 	
 
 	return (
 		<div>
-			<div onClick={_=>setSelectMod(prev=>!prev)}>{selectMode ? 'cancel' : 'add users'}</div>
-			<div>
-				{showMember &&
-					allUsers.map(user =>
-						<div key={user._id}>
-							<h3>{user.name}</h3>
-							<p>{user.phone}</p>
+			<div onClick={_ => setShowMembers(prev=>!prev)}>{selectMode ? 'cancel' : 'add users'}</div>
+			{showMember &&
+			<div className='group-form-screen'>
+				<div className="chat-container-wrapper add-parti-cont">
+					<div className='close' onClick={close} />
+					<h3>Add Participants</h3>
+						<div className='addBtn add-parti-btn'>add</div>
+						<div className='part-list-cont'>
+							{
+								allUsers.map((user,idx) =>
+									<div onClick={_=>handleSelect(idx)} className='group-chat-wrap' key={user._id}>
+										<h3>{user.name}</h3>
+										<p>{user.phone}</p>
+										<div className={`select-icon ${user.selected && 'select-icon-active'}`} />
+									</div>
+								)
+							}
 						</div>
-					)
-				}
+				</div>
 			</div>
+			}
 		</div>	
 	)
 }
