@@ -53,7 +53,7 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1M2EyNTc2NzI0ZmU2ZjljYTQ2ZjEzNSIsImlhdCI6MTY5ODQwNDM5NCwiZXhwIjoxNjk5MjY4Mzk0fQ.Km7hZIitJyg96GRPz8M2k30HBYKkF62BrZoDZkyJQaM
 
 {
-    "name": "Group2"
+    "name": "Group1"
 }
 
 ###
@@ -67,6 +67,18 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1M2EyNTc2N
     "groupId": "653a28e721540cff1ce8ae5d"
 }
 
+
+###
+
+
+PATCH http://localhost:8000/group/addMembers
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1M2EyNTc2NzI0ZmU2ZjljYTQ2ZjEzNSIsImlhdCI6MTY5ODQwNDM5NCwiZXhwIjoxNjk5MjY4Mzk0fQ.Km7hZIitJyg96GRPz8M2k30HBYKkF62BrZoDZkyJQaM
+
+{
+    "memberIds": ["653a2587724fe6f9ca46f139", "653a2070aecabd0678ce5fce"],
+    "groupId": "653bc0583fba65508b880451"
+}
 
 ###
 
@@ -104,7 +116,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1M2EyNTc2N
 
 ###
 
-DELETE http://localhost:8000/group/653a7f51904c2d4a15c23da7
+DELETE http://localhost:8000/group/653a28e721540cff1ce8ae5d
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY1M2EyNTc2NzI0ZmU2ZjljYTQ2ZjEzNSIsImlhdCI6MTY5ODQwNDM5NCwiZXhwIjoxNjk5MjY4Mzk0fQ.Km7hZIitJyg96GRPz8M2k30HBYKkF62BrZoDZkyJQaM
 
 ###

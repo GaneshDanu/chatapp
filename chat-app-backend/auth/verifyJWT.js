@@ -19,7 +19,6 @@ function verifyToken(req, res, next) {
     }
 
     req.authUser = decoded;
-    console.log('decode ', decoded)
     next();
   });
 }

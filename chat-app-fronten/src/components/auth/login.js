@@ -23,7 +23,7 @@ export default function Login() {
     const { password, phone} = userInfo
     // TODO add correct validation for name, password and phone
     if(!password || !phone) return 
-    const res = await login({...userInfo})
+    const res = await login({ ...userInfo })
     if(res.ok === false){
       return alert(res.message)
     }

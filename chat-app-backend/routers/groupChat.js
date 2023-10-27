@@ -169,6 +169,24 @@ router.patch('/addMember', verifyToken, async (req, res) => {
     }
 })
 
+router.patch('/addMembers', verifyToken, async (req, res) => {
+    try {
+        const userId = req.authUser.id
+        const { memberIds, groupId } = req.body
+        const newMember = memberIds.map(userId => { return { userId } })
+        console.log('newMember', newMember)
+        const updatedData = await GroupChat.findOneAndUpdate(
+            { _id: groupId },
+            { $addToSet: { members: { $each: newMember } } },
+            { new: true }
+        )
+        return res.status(201).json({ message: 'members added', updatedData })
+    } catch (err) {
+        console.log('err ', err.message)
+        res.status(500).json({ ok: false, message: err.message })
+    }
+})
+
 
 async function getGroup(req, res, next){
     let group

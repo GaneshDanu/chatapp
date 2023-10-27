@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { getAllUsers, getGroupNonParticipants } from '../../api/apis'
+import { addMembersToGroup, getAllUsers, getGroupNonParticipants } from '../../api/apis'
 
 export default function AddMember({groupId, close}) {
 
@@ -26,6 +26,26 @@ export default function AddMember({groupId, close}) {
 		setAllUsers(users)
 	}
 
+	const addMembers = async _ => {
+		const memberIds = []
+		allUsers.forEach(user => {
+			if (user.selected) {
+				memberIds.push(user._id)
+			}
+		})
+
+		if (memberIds.length === 0) {
+			close()
+			return
+		}
+		const res = await addMembersToGroup({ groupId, memberIds })
+		if (res.ok === false) {
+			return alert(res.message)
+		}
+		console.log('res ', res)
+		close()
+	}
+
 	
 
 	return (
@@ -36,7 +56,7 @@ export default function AddMember({groupId, close}) {
 				<div className="chat-container-wrapper add-parti-cont">
 					<div className='close' onClick={close} />
 					<h3>Add Participants</h3>
-						<div className='addBtn add-parti-btn'>add</div>
+						<div className='addBtn add-parti-btn' onClick={addMembers}>add</div>
 						<div className='part-list-cont'>
 							{
 								allUsers.map((user,idx) =>

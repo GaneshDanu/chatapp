@@ -26,7 +26,8 @@ export const login = ({phone, password}) => {
         body: JSON.stringify({phone, password})
     }
     return fetch(`${process.env.REACT_APP_API_URL}/user/login`, requestOption)
-    .then(res=>res.json()).then(res=>{
+        .then(res => res.json())
+        .then(res => {
         setLoginInfo(res)
         return res
     })
@@ -47,6 +48,7 @@ export const createGroup = ({name}) => {
         body: JSON.stringify({name})
     }
     return fetch(`${process.env.REACT_APP_API_URL}/group`, requestOption)
+    .then(handleAuthCheck)
     .then(res=>res.json())
     .catch(err=>{
         console.log('err ', err)
@@ -64,6 +66,7 @@ export const getMyGroups = () => {
         },
     }
     return fetch(`${process.env.REACT_APP_API_URL}/group/mygroups`, requestOption)
+    .then(handleAuthCheck)
     .then(res=>res.json())
     .catch(err=>{
         console.log('err ', err)
@@ -81,6 +84,7 @@ export const getAllUsers = () => {
         },
     }
     return fetch(`${process.env.REACT_APP_API_URL}/user/all`, requestOption)
+    .then(handleAuthCheck)
     .then(res=>res.json())
     .catch(err=>{
         console.log('err ', err)
@@ -99,6 +103,7 @@ export const sendMessage = ({message, groupId}) => {
         body: JSON.stringify({message})
     }
     return fetch(`${process.env.REACT_APP_API_URL}/group/${groupId}/chat`, requestOption)
+    .then(handleAuthCheck)
     .then(res=>res.json())
     .catch(err=>{
         console.log('err ', err)
@@ -117,9 +122,38 @@ export const getGroupNonParticipants = ({groupId}) => {
         },
     }
     return fetch(`${process.env.REACT_APP_API_URL}/group/${groupId}/nonparticipents`, requestOption)
+        .then(handleAuthCheck)
         .then(res => res.json())
         .catch(err => {
             if (err.response) return err.response
             return { ok: false, message: err.message }
         })
 }
+
+const handleAuthCheck = res => {
+    if (res.status === 401) {
+        localStorage.clear()
+        window.location.href = `${window.location.origin}/login `
+    }
+
+    return res
+}
+
+export const addMembersToGroup = ({ groupId, memberIds }) => {
+    const requestOption = {
+        method: 'PATCH',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${getAuthToken()}`
+        },
+        body: JSON.stringify({ groupId, memberIds })
+    }
+    return fetch(`${process.env.REACT_APP_API_URL}/group/addMembers`, requestOption)
+        .then(handleAuthCheck)
+        .then(res => res.json())
+        .catch(err => {
+            if (err.response) return err.response
+            return { ok: false, message: err.message }
+        })
+}
+ 
